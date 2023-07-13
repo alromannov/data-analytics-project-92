@@ -29,7 +29,7 @@ order by average_income
 
 /*Отчет содержит информацию о выручке по дням недели.*/
 with tab as (
-select price, quantity, CONCAT(e.first_name,' ', e.last_name) as name, to_char(sale_date, 'Day') as weekday, EXTRACT(ISODOW from sale_date) as nmbr
+select price, quantity, CONCAT(e.first_name,' ', e.last_name) as name, to_char(sale_date, 'day') as weekday, EXTRACT(ISODOW from sale_date) as nmbr
 from sales s
 left join products p on
 s.product_id  = p.product_id 
@@ -66,7 +66,7 @@ order by 1
 
 /*Отчет о покупателях, первая покупка которых была в ходе проведения акций*/
 select  distinct on (CONCAT(c.first_name,' ', c.last_name)) CONCAT(c.first_name,' ', c.last_name) as customer, s.sale_date,
-CONCAT(e.first_name,' ', e.last_name) as employee
+CONCAT(e.first_name,' ', e.last_name) as seller
 from sales s
 join customers c 
 on s.customer_id = c.customer_id 
