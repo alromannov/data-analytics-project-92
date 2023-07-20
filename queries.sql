@@ -44,14 +44,12 @@ order by nmbr, 1
 ;
 
 /*Количество покупателей в разных возрастных группах: 16-25, 26-40 и 40+.*/
-select distinct (CASE WHEN  age >= 16 AND age <= 25  THEN '16-25' 
+select (CASE WHEN  age >= 16 AND age <= 25  THEN '16-25' 
               WHEN age >= 26 AND Age <= 40 THEN '26-40'
               WHEN age > 40 THEN '40+' end) as age_category,
-          COUNT(age) over (partition by (case when age >= 16 AND age <= 25  THEN 1
-              WHEN age >= 26 AND Age <= 40 THEN 2
-              WHEN age > 40 THEN 3
-              END)) as count    
+Count(distinct customer_id) as count
 from customers
+group by 1
 order by 1
 
 /*Данные по количеству уникальных покупателей и выручке, которую они принесли.*/
