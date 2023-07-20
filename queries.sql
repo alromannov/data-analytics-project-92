@@ -47,7 +47,7 @@ order by nmbr, 1
 select (CASE WHEN  age >= 16 AND age <= 25  THEN '16-25' 
               WHEN age >= 26 AND Age <= 40 THEN '26-40'
               WHEN age > 40 THEN '40+' end) as age_category,
-Count(distinct customer_id) as count
+count(customer_id) as count
 from customers
 group by 1
 order by 1
